@@ -12,7 +12,7 @@ const products = require("../models/mocks/productsMock");
 describe("Testes de unidade do products Controller", () => {
   afterEach = sinon.restore();
   it("Case de sucesso", () => {
-    it("Retorna todos os produtos", async () => {
+    it("Retorna o status 200 e a lista de produtos", async () => {
       const res = {};
       const req = {};
 
