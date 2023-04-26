@@ -9,4 +9,14 @@ const getAll = async () => {
 }
 // getAll()
 
-module.exports = { getAll }
+const getById = async (productId) => { // precisa de [[]] ?
+  const [[product]] = await connection.execute(
+    "SELECT * FROM StoreManager.products WHERE id = ?",
+    [productId]
+  );
+  // console.log(product)
+  return product;
+};
+// getById(2)
+
+module.exports = { getAll, getById };
