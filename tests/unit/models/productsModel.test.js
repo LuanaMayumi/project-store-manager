@@ -30,13 +30,14 @@ describe('Testes de unidade do products Model', () => {
       expect(result).to.be.deep.equal(products)
     })
 
-     it("Recuperando um produto pelo ID", async () => {
-       // ARRANGE
-       sinon.stub(connection, "execute").resolves([[product]]);
+    it("Recuperando um produto pelo ID", async () => {
+      // ARRANGE
+      sinon.stub(connection, "execute").resolves([product]);
+    //  [ [{ produto }], ['metadados'] ]
        // ACT
        const result = await productModel.getById(1);
        // ASSERT
-       expect(result).to.be.deep.equal([[product]]);
+       expect(result).to.be.deep.equal(product[0]);
      });
   })
 })

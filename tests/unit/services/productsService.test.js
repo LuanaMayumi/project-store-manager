@@ -17,8 +17,9 @@ describe("Testes de unidade do products Service", () => {
       // ACT
       const result = await productsService.getAll()
       // ASSERT
-      expect(result.type).to.be.equal(200);
-      expect(result.message).to.deep.equal(products)
+      expect(result).to.be.deep.equal(products)
+      // expect(result.type).to.be.equal(200);
+      // expect(result.message).to.deep.equal(products)
     });
 
     it("Retorna um produto pelo ID", async () => {
