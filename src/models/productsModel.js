@@ -4,12 +4,12 @@ const getAll = async () => {
   const [products] = await connection.execute(
     'SELECT * FROM StoreManager.products',
   );
-  // console.log(products)
+  console.log('model', products);
   return products;
 };
 // getAll()
 
-const getById = async (productId) => { // precisa de [[]] ?
+const getById = async (productId) => {
   const [[product]] = await connection.execute(
     'SELECT * FROM StoreManager.products WHERE id = ?',
     [productId],
@@ -18,5 +18,7 @@ const getById = async (productId) => { // precisa de [[]] ?
   return product;
 };
 // getById(2)
+
+// const createProduct
 
 module.exports = { getAll, getById };

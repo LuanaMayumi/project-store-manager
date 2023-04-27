@@ -7,12 +7,17 @@ chai.use(sinonChai);
 
 const productsService = require("../../../src/services/productsService");
 const productsController = require("../../../src/controllers/productsController");
-const products = require("../models/mocks/productsMock");
+const { products, product } = require("../models/mocks/productsMock");
 
-describe("Testes de unidade do products Controller", () => {
-  afterEach = sinon.restore();
-  it("Case de sucesso", () => {
-    it("Retorna o status 200 e a lista de produtos", async () => {
+describe("Testes de unidade do products Controller", function () {
+
+  afterEach(function () {
+    sinon.restore();
+  });
+
+  describe('Case de sucesso', () => {
+
+    it("Retorna o status 200 e a lista de produtos", async () =>  {
       const res = {};
       const req = {};
 
@@ -26,5 +31,24 @@ describe("Testes de unidade do products Controller", () => {
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(products);
     });
-  });
+
+    it("Retorna o status 200 e produto referente ao ID", async () => {
+      const res = {};
+      const req = {
+        params: { id: 1 },
+      };
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      // ARRANGE
+      sinon
+        .stub(productsService, "getById")
+        .resolves({ type: 200, message: product });
+      // ACT
+      await productsController.getById(req, res);
+      // ASSERT
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith(product);
+    });
+  })
 });

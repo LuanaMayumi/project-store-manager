@@ -2,11 +2,15 @@ const { expect } = require('chai');
 const sinon = require('sinon')
 const connection = require('../../../src/models/connection')
 const productModel = require("../../../src/models/productsModel");
-const { products } = require('./mocks/productsMock')
+const { products, product } = require('./mocks/productsMock')
 
 describe('Testes de unidade do products Model', () => {
-  afterEach = sinon.restore();
-  it('Case de sucesso', () => {
+
+  afterEach(function () {
+    sinon.restore();
+  });
+
+  describe('Case de sucesso', () => {
 
     it('Verifica se é um array', async () => {
       // ARRANGE
@@ -19,12 +23,20 @@ describe('Testes de unidade do products Model', () => {
 
     it('Recuperando todos os produtos do db', async () => {
       // ARRANGE
-      sinon.stub(connection, 'execute').resolves([products.products])
+      sinon.stub(connection, 'execute').resolves([products])
       // ACT
       const result = await productModel.getAll()
       // ASSERT
-      expect(result).to.be.deep.equal(products.products)
+      expect(result).to.be.deep.equal(products)
     })
-  })
 
+     it("Recuperando um produto pelo ID", async () => {
+       // ARRANGE
+       sinon.stub(connection, "execute").resolves([[product]]);
+       // ACT
+       const result = await productModel.getById(1);
+       // ASSERT
+       expect(result).to.be.deep.equal([[product]]);
+     });
+  })
 })
