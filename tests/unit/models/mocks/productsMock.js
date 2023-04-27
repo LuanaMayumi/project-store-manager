@@ -20,4 +20,15 @@ const product = [
   }
 ];
 
-module.exports = { products, product };
+const newProduct = [
+  {
+    fieldCount: 0,
+    affectedRows: 1,
+    insertId: 4,
+    info: "",
+    serverStatus: 2,
+    warningStatus: 0,
+  },
+];
+
+module.exports = { products, product, newProduct };

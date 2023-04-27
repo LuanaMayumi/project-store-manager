@@ -20,11 +20,12 @@ const getById = async (productId) => {
 // getById(2)
 
 const createProduct = async (product) => {
-  const [{ insertId }] = await connection.execute(
+  const result = await connection.execute(
     'INSERT INTO StoreManager.products (name) VALUES (?);',
     [product],
   );
-  // console.log(insertId);
+  // console.log('mock para o create', result);
+  const [{ insertId }] = result;
   return { id: insertId, name: product.name };
   // return newProduct.insertId; //
 };
