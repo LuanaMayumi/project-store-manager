@@ -13,4 +13,13 @@ const getById = async (productId) => {
   return { type: 200, message: product };
 };
 
-module.exports = { getAll, getById };
+const createProduct = async (product) => { // qdo cria um produto, cria um ID
+  const createdProductId = await productsModel.createProduct(product);
+  // console.log(createdProductId);
+  if (!createdProductId) return { type: 404, message: 'Product not created' };
+
+  return { type: 201, message: createdProductId };
+};
+// createProduct({ name: 'ProdutoX' });
+
+module.exports = { getAll, getById, createProduct };

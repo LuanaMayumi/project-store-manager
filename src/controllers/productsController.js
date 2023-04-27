@@ -14,4 +14,17 @@ const getById = async (req, res) => {
   return res.status(product.type).json(product.message);
 };
 
-module.exports = { getAll, getById };
+const createProduct = async (req, res) => {
+  const name = req.body;
+  console.log(name);
+  const createdProductId = await productsService.createProduct(name);
+
+  if (createdProductId.type === 404) {
+    return res
+      .status(createdProductId.type).json({ message: createdProductId.message });
+  }
+
+  return res.status(createdProductId.type).json(createdProductId.message);
+};
+
+module.exports = { getAll, getById, createProduct };
