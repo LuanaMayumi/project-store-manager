@@ -16,7 +16,6 @@ const getById = async (req, res) => {
 
 const createProduct = async (req, res) => {
   const name = req.body;
-  console.log(name);
   const createdProductId = await productsService.createProduct(name);
 
   if (createdProductId.type === 404) {
