@@ -6,6 +6,15 @@ const getAll = async () => {
   return sales;
 };
 
+const getById = async (saleId) => {
+  const sales = await salesModel.getById(saleId);
+  // console.log(sales);
+
+  if (sales.length === 0) return { type: 404, message: 'Sale not found' };
+
+  return { type: 200, message: sales };
+};
+
 const createSale = async (sales) => {
   const newSaleId = await salesModel.createSale();
   const productsSold = await Promise.all(
@@ -26,5 +35,6 @@ const createSale = async (sales) => {
 
 module.exports = {
   getAll,
+  getById,
   createSale,
 };
