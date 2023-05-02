@@ -8,9 +8,9 @@ const validateProductId = async (req, res, next) => {
     if (arrayBody[index].productId === undefined) {
       return res.status(400).json({ message: '"productId" is required' });
     }
-    const idExistDb = await Promise.all(getById(arrayBody[index].productId));
+    // const idExistDb = await getById(arrayBody[index].productId);
     if (arrayBody[index].productId !== getById(arrayBody[index].productId)) {
-      return res.status(407).json({ message: 'Product not found' });
+      return res.status(404).json({ message: 'Product not found' });
     }
   }
   return next();
