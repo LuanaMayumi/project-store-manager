@@ -29,7 +29,7 @@ const createSale = async (sales) => {
         sale.quantity,
       )),
   );
-  console.log(productsSold);
+  // console.log(productsSold);
   return { type: 201, message: { id: newSaleId, itemsSold: [...sales] } };
 };
 
