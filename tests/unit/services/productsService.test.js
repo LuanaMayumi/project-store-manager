@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const sinon = require('sinon')
 const productsService = require('../../../src/services/productsService')
 const productsModel = require('../../../src/models/productsModel')
-const { products, product } = require('../models/mocks/productsMock')
+const { products, product } = require('../mocks/productsMock')
 
 describe("Testes de unidade do products Service", () => {
 
