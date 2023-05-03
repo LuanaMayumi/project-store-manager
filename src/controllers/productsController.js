@@ -28,10 +28,10 @@ const createProduct = async (req, res) => {
 
 const update = async (req, res) => {
   const { name } = req.body;
-  const { id } = req.params;
+  // const { id } = req.params;
 
-  const productSearched = await productsService.getById(Number(id));
-  console.log(productSearched);
+  // const productSearched = await productsService.getById(Number(id));
+  // console.log(productSearched);
 
   const updatedProduct = await productsService.update(name);
 
