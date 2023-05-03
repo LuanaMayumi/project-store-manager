@@ -26,6 +26,7 @@ const getById = async (saleId) => {
       WHERE sp.sale_id = ?;`,
     [saleId],
   );
+  console.log(sales);
   return sales;
 };
 
