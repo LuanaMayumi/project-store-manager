@@ -7,7 +7,6 @@ const getAll = async () => {
   // console.log('model', products);
   return products;
 };
-// getAll()
 
 const getById = async (productId) => {
   const [[product]] = await connection.execute(
@@ -17,7 +16,6 @@ const getById = async (productId) => {
   // console.log(product);
   return product;
 };
-// getById(2)
 
 const createProduct = async (product) => {
   const result = await connection.execute(
@@ -30,12 +28,12 @@ const createProduct = async (product) => {
   // return newProduct.insertId; //
 };
 
-const update = async (productId) => {
+const update = async (nameProduct, productId) => {
   const [[product]] = await connection.execute(
     `UPDATE StoreManager.products
-      SET name = 'Martelo do Batman'
+      SET name = ?
       WHERE id = ?;`,
-    [productId],
+    [nameProduct, productId],
   );
   return product;
 };

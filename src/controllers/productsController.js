@@ -28,17 +28,18 @@ const createProduct = async (req, res) => {
 
 const update = async (req, res) => {
   const { name } = req.body;
-  // const { id } = req.params;
+  const { id } = req.params;
 
-  // const productSearched = await productsService.getById(Number(id));
-  // console.log(productSearched);
+  const productSearched = await productsService.getById(Number(id));
+  console.log(productSearched);
+
+  if (productSearched.type === 404) {
+    return res
+      .status(productSearched.type)
+      .json({ message: productSearched.message });
+  }
 
   const updatedProduct = await productsService.update(name);
-
-  if (updatedProduct.type === 404) {
-    return res
-    .status(updatedProduct.type).json({ message: updatedProduct.message });
-  }
 
   return res.status(updatedProduct.type).json(updatedProduct.message);
 };
@@ -49,7 +50,8 @@ const deleteProduct = async (req, res) => {
   if (deletedProduct.type === 404) {
     return res.status(deletedProduct.type).json({ message: deletedProduct.message });
   }
-  return res.status(deletedProduct.type).json(deletedProduct.message);
+  return res.status(deletedProduct.type).send();
+  // return res.status(deletedProduct.type).json(deletedProduct.message);
 };
 
 module.exports = { getAll, getById, createProduct, update, deleteProduct };
