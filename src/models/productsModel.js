@@ -30,4 +30,14 @@ const createProduct = async (product) => {
   // return newProduct.insertId; //
 };
 
-module.exports = { getAll, getById, createProduct };
+const update = async (productId) => {
+  const [[product]] = await connection.execute(
+    `UPDATE StoreManager.products
+      SET name = 'Martelo do Batman'
+      WHERE id = ?;`,
+    [productId],
+  );
+  return product;
+};
+
+module.exports = { getAll, getById, createProduct, update };

@@ -26,4 +26,21 @@ const createProduct = async (req, res) => {
   return res.status(createdProductId.type).json(createdProductId.message);
 };
 
-module.exports = { getAll, getById, createProduct };
+const update = async (req, res) => {
+  const { name } = req.body;
+  const { id } = req.params;
+
+  const productSearched = await productsService.getById(Number(id));
+  console.log(productSearched);
+
+  const updatedProduct = await productsService.update(name);
+
+  if (updatedProduct.type === 404) {
+    return res
+    .status(updatedProduct.type).json({ message: updatedProduct.message });
+  }
+
+  return res.status(updatedProduct.type).json(updatedProduct.message);
+};
+
+module.exports = { getAll, getById, createProduct, update };

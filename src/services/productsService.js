@@ -20,6 +20,11 @@ const createProduct = async (product) => { // qdo cria um produto, cria um ID
 
   return { type: 201, message: createdProductId };
 };
-// createProduct({ name: 'ProdutoX' });
 
-module.exports = { getAll, getById, createProduct };
+const update = async (productId) => {
+  const updatedProduct = await productsModel.update(productId);
+  if (!updatedProduct) return { type: 404, message: 'Product not found' };
+  return { type: 200, message: updatedProduct };
+};
+
+module.exports = { getAll, getById, createProduct, update };
