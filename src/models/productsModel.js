@@ -28,14 +28,14 @@ const createProduct = async (product) => {
   // return newProduct.insertId; //
 };
 
-const update = async (nameProduct, productId) => {
-  const [[product]] = await connection.execute(
+const update = async (productId, nameProduct) => {
+  await connection.execute(
     `UPDATE StoreManager.products
       SET name = ?
       WHERE id = ?;`,
     [nameProduct, productId],
   );
-  return product;
+  return { id: productId, name: nameProduct };
 };
 
 const deleteProduct = async (productId) => {

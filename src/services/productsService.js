@@ -23,8 +23,8 @@ const createProduct = async (product) => { // qdo cria um produto, cria um ID
 
 const update = async (productId, nameProduct) => {
   const product = await productsModel.getById(productId);
-  const updatedProduct = await productsModel.update(nameProduct);
   if (!product) return { type: 404, message: 'Product not found' };
+  const updatedProduct = await productsModel.update(productId, nameProduct);
   return { type: 200, message: updatedProduct };
 };
 

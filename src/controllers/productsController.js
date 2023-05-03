@@ -30,17 +30,10 @@ const update = async (req, res) => {
   const { name } = req.body;
   const { id } = req.params;
 
-  const productSearched = await productsService.getById(Number(id));
-  console.log(productSearched);
-
-  if (productSearched.type === 404) {
-    return res
-      .status(productSearched.type)
-      .json({ message: productSearched.message });
+  const updatedProduct = await productsService.update(Number(id), name);
+  if (updatedProduct.type === 404) {
+    return res.status(updatedProduct.type).json({ message: updatedProduct.message });
   }
-
-  const updatedProduct = await productsService.update(name);
-
   return res.status(updatedProduct.type).json(updatedProduct.message);
 };
 
