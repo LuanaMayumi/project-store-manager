@@ -44,7 +44,6 @@ const deleteProduct = async (req, res) => {
     return res.status(deletedProduct.type).json({ message: deletedProduct.message });
   }
   return res.status(deletedProduct.type).send();
-  // return res.status(deletedProduct.type).json(deletedProduct.message);
 };
 
 module.exports = { getAll, getById, createProduct, update, deleteProduct };
