@@ -21,11 +21,8 @@ describe("Testes unitarios de Sales Controller", function () {
 
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
-      // ARRANGE
       sinon.stub(salesService, "getAll").resolves(sales);
-      // ACT
       await salesController.getAll(req, res);
-      // ASSERT
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(sales);
     });
@@ -38,13 +35,10 @@ describe("Testes unitarios de Sales Controller", function () {
 
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
-      // ARRANGE
       sinon
         .stub(salesService, "getById")
         .resolves({ type: 200, message: sales[0] });
-      // ACT
       await salesController.getById(req, res);
-      // ASSERT
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(sales[0]);
     });

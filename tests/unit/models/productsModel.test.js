@@ -13,30 +13,21 @@ describe('Testes de unidade do products Model', () => {
   describe('Case de sucesso', () => {
 
     it('Verifica se é um array', async () => {
-      // ARRANGE
       sinon.stub(connection, "execute").resolves([products]);
-      // ACT
       const result = await productModel.getAll();
-      // ASSERT
+
       expect(result).to.be.a('array');
     })
 
     it('Recuperando todos os produtos do db', async () => {
-      // ARRANGE
       sinon.stub(connection, 'execute').resolves([products])
-      // ACT
       const result = await productModel.getAll()
-      // ASSERT
       expect(result).to.be.deep.equal(products)
     })
 
     it("Recuperando um produto pelo ID", async () => {
-      // ARRANGE
       sinon.stub(connection, "execute").resolves([product]);
-    //  [ [{ produto }], ['metadados'] ]
-       // ACT
        const result = await productModel.getById(1);
-       // ASSERT
        expect(result).to.be.deep.equal(product[0]);
     });
 

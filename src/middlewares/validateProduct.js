@@ -2,8 +2,7 @@ const { getById } = require('../models/productsModel');
 
 const validateProductId = async (req, res, next) => {
   const arrayBody = req.body;
-  // nao podemos usar HOF - tem () =>
-  // o return é executado mas a função continua sendo executada para os outros elementos
+
   for (let index = 0; index < arrayBody.length; index += 1) {
     if (!arrayBody[index].productId) {
       return res.status(400).json({ message: '"productId" is required' });
@@ -14,7 +13,6 @@ const validateProductId = async (req, res, next) => {
 
 const validateProductExistOnDB = async (req, res, next) => {
   const arrayBody = req.body;
-  // preciso verificar se o id do body existe no array de produtos
   const idExistDb = await Promise.all(arrayBody.map((el) => getById(el.productId)));
 
   for (let index = 0; index < idExistDb.length; index += 1) {

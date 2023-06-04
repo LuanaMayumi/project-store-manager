@@ -23,11 +23,8 @@ describe("Testes de unidade do products Controller", function () {
 
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
-      // ARRANGE
       sinon.stub(productsService, "getAll").resolves(products);
-      // ACT
       await productsController.getAll(req, res);
-      // ASSERT
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(products);
     });
@@ -40,13 +37,10 @@ describe("Testes de unidade do products Controller", function () {
 
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
-      // ARRANGE
       sinon
         .stub(productsService, "getById")
         .resolves({ type: 200, message: product });
-      // ACT
       await productsController.getById(req, res);
-      // ASSERT
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(product);
     });
