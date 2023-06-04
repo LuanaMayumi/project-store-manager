@@ -19,8 +19,6 @@ const createSale = async (sales) => {
   const productsSold = await Promise.all(
     sales.map((sale) =>
       // Promise.all é usado para garantir que a variável productsSold espere todas as promises serem resolvidas antes de sair do MAP e continuar
-      // a variavel productsSold vai retornar um array de 0 e 1
-      // pq o meu retorno da função productsSold é o affectedRows - 1 significa que deu certo a inserção, 0 que não deu certo
       productsSolddModel.productsSold(
       // faz uma inserção na tabela para cada sale
         newSaleId,
